@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lectern</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside id="library">
+    <div class="brand"><span>Lectern</span><button id="add-btn" class="primary">+ Add</button></div>
+    <ul id="docs"></ul>
+  </aside>
+
+  <main>
+    <div id="scroller">
+      <div id="empty"><h1>Listen to anything.</h1><p>Add a PDF, Word file, web page, or pasted text and have it read aloud.</p></div>
+      <article id="reader" hidden></article>
+    </div>
+
+    <footer id="player">
+      <div class="seek">
+        <input id="seek" type="range" min="0" max="0" value="0" aria-label="Position">
+        <span id="time">0:00</span>
+      </div>
+      <div class="row">
+        <div class="transport">
+          <button id="prev" aria-label="Previous sentence">⏮</button>
+          <button id="play" class="primary round" aria-label="Play">▶</button>
+          <button id="next" aria-label="Next sentence">⏭</button>
+        </div>
+        <div class="opts">
+          <label>Speed
+            <select id="rate"><option>0.75</option><option selected>1</option><option>1.25</option><option>1.5</option><option>1.75</option><option>2</option><option>2.5</option><option>3</option></select>
+          </label>
+          <label>Voice <select id="voice"></select></label>
+          <button id="export">Save audio</button>
+          <button id="delete" class="danger">Delete</button>
+        </div>
+      </div>
+    </footer>
+  </main>
+</div>
+
+<dialog id="add">
+  <h2>Add to library</h2>
+  <label>Title (optional)<input id="a-title" type="text"></label>
+  <label>Paste text<textarea id="a-text" rows="6"></textarea></label>
+  <label>…or a file (PDF, DOCX, TXT, MD, HTML)<input id="a-file" type="file" accept=".pdf,.docx,.txt,.md,.markdown,.html,.htm"></label>
+  <label>…or a web link<input id="a-url" type="url" placeholder="https://"></label>
+  <label class="check"><input id="a-clean" type="checkbox" checked> Tidy pasted text (remove citations, links, page numbers)</label>
+  <p id="a-err" class="err" role="alert" hidden></p>
+  <div class="actions"><button id="a-cancel">Cancel</button><button id="a-ok" class="primary">Add</button></div>
+</dialog>
+<div id="toast" role="status" hidden></div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
